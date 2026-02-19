@@ -1,0 +1,425 @@
+/* ===== Reset & Base ===== */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-dark: #111827;
+  --bg-surface: #1f2937;
+  --bg-card: #283347;
+  --bg-hover: #334155;
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --accent: #6366f1;
+  --accent-hover: #818cf8;
+  --accent-soft: rgba(99, 102, 241, 0.15);
+  --green: #22c55e;
+  --border: #334155;
+  --radius: 12px;
+}
+
+body {
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+/* ===== Container ===== */
+.container {
+  width: 100%;
+  max-width: 720px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* ===== Header ===== */
+.header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.header-icon {
+  font-size: 2.5rem;
+}
+
+.header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.subtitle {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  font-weight: 300;
+}
+
+/* ===== Filtros ===== */
+.filters {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-end;
+  background-color: var(--bg-surface);
+  padding: 1.25rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  flex: 1;
+}
+
+.filter-group label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-secondary);
+}
+
+.filter-group select {
+  padding: 0.65rem 0.75rem;
+  font-size: 0.95rem;
+  font-family: 'Inter', sans-serif;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background-color: var(--bg-card);
+  color: var(--text-primary);
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%2394a3b8' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  padding-right: 2rem;
+}
+
+.filter-group select:focus {
+  border-color: var(--accent);
+}
+
+.filters button {
+  padding: 0.65rem 1.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  border: none;
+  border-radius: 8px;
+  background-color: var(--accent);
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+  white-space: nowrap;
+}
+
+.filters button:hover {
+  background-color: var(--accent-hover);
+}
+
+.filters button:active {
+  transform: scale(0.96);
+}
+
+/* ===== Results ===== */
+.results {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.results-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.results-header h2 {
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.holiday-count {
+  background-color: var(--accent-soft);
+  color: var(--accent-hover);
+  padding: 0.3rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.placeholder-text {
+  text-align: center;
+  color: var(--text-muted);
+  padding: 3rem 1rem;
+  font-size: 0.95rem;
+}
+
+.loading-text {
+  text-align: center;
+  color: var(--text-muted);
+  padding: 3rem 1rem;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+.error-text {
+  text-align: center;
+  color: #f87171;
+  padding: 2rem 1rem;
+}
+
+/* ===== Meses ===== */
+.months-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.month-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.month-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--accent-hover);
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--border);
+}
+
+/* ===== Holiday Card ===== */
+.holiday-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.holiday-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.85rem 1rem;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+.holiday-card:hover {
+  background-color: var(--bg-hover);
+  border-color: var(--text-muted);
+}
+
+.holiday-card.today {
+  border-color: var(--green);
+  background-color: rgba(34, 197, 94, 0.08);
+}
+
+.holiday-date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 52px;
+  flex-shrink: 0;
+}
+
+.day-number {
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--text-primary);
+}
+
+.day-name {
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.holiday-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.holiday-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.holiday-name-intl {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.holiday-type {
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+.today-badge {
+  background-color: var(--green);
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  letter-spacing: 1px;
+  flex-shrink: 0;
+}
+
+/* ===== Stats ===== */
+.stats {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+}
+
+.stats h3 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.stats-bars {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  gap: 0.5rem;
+  height: 120px;
+}
+
+.stats-bar-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  flex: 1;
+}
+
+.stats-day {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  order: 3;
+}
+
+.stats-bar-bg {
+  width: 100%;
+  max-width: 32px;
+  height: 80px;
+  background-color: var(--bg-card);
+  border-radius: 4px;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  order: 2;
+}
+
+.stats-bar {
+  width: 100%;
+  background: linear-gradient(180deg, var(--accent-hover), var(--accent));
+  border-radius: 4px;
+  transition: height 0.5s ease;
+  min-height: 2px;
+}
+
+.stats-count {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--accent-hover);
+  order: 1;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ===== Responsivo — Celular ===== */
+@media (max-width: 480px) {
+  body {
+    padding: 1rem 0.5rem;
+  }
+
+  .header h1 {
+    font-size: 1.5rem;
+  }
+
+  .filters {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .filters button {
+    width: 100%;
+    padding: 0.75rem;
+  }
+
+  .holiday-card {
+    padding: 0.75rem;
+    gap: 0.75rem;
+  }
+
+  .day-number {
+    font-size: 1.25rem;
+  }
+
+  .holiday-name {
+    font-size: 0.88rem;
+  }
+
+  .results-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .stats-bars {
+    height: 100px;
+  }
+}
+
+/* ===== Responsivo — Tablet ===== */
+@media (min-width: 481px) and (max-width: 768px) {
+  .container {
+    max-width: 600px;
+  }
+}
